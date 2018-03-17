@@ -1,0 +1,2 @@
+# KataJava
+Java Kata
