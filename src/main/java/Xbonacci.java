@@ -2,8 +2,9 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
+ * ### 2018/03/18 Kata
  * ##　Description:
- *
+ * <p>
  * Well met with Fibonacci bigger brother, AKA Tribonacci.
  * <p>
  * As the name may already reveal, it works basically like a Fibonacci, but summing the last 3 (instead of 2) numbers of the sequence to generate the next. And, worse part of it, regrettably I won't get to hear non-native Italian speakers trying to pronounce it :(
@@ -26,19 +27,25 @@ import java.util.stream.Stream;
  * <p>
  * [Personal thanks to Professor Jim Fowler on Coursera for his awesome classes that I really recommend to any math enthusiast and for showing me this mathematical curiosity too with his usual contagious passion :)]
  * <p>
- * **Best**
- * ```java
- * public double[] tribonacciBest(double[] s, int n) {
- * double[] tritab= Arrays.copyOf(s, n);
- * for(int i=3;i<n;i++){
- * tritab[i]=tritab[i-1]+tritab[i-2]+tritab[i-3];
- * }
- * return tritab;
- * }
- * ```
  */
 public class Xbonacci {
 
+    /**
+     * ```java
+     *
+     * if (s.length < 3 || n <= 0) {
+     *      return new double[]{};
+     * }
+     * return Stream.iterate(s, t -> new double[]{t[1], t[2], t[0] + t[1] + t[2]})
+     *      .limit(n)
+     *      .mapToDouble(t -> t[0])
+     *      .toArray();
+     *
+     * ```
+     * @param s
+     * @param n
+     * @return
+     */
     public double[] tribonacci(double[] s, int n) {
         if (s.length < 3 || n <= 0) {
             return new double[]{};
@@ -49,6 +56,20 @@ public class Xbonacci {
                 .toArray();
     }
 
+    /**
+     * ```java
+     *
+     * double[] tritab = Arrays.copyOf(s, n);
+     * for (int i = 3; i < n; i++) {
+     *      tritab[i] = tritab[i - 1] + tritab[i - 2] + tritab[i - 3];
+     * }
+     * return tritab;
+     *
+     * ```
+     * @param s
+     * @param n
+     * @return
+     */
     public double[] tribonacciBest(double[] s, int n) {
         double[] tritab = Arrays.copyOf(s, n);
         for (int i = 3; i < n; i++) {
