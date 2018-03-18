@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Description:
- * Your task is to sort a given string. Each word in the String will contain a single number. This number is the position the word should have in the result.
+ * ## Description:
+ *
+ * Your task is to sort a given string. Each word in the String will contain a single number.
+ * This number is the position the word should have in the result.
  * <p>
  * Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
  * <p>
@@ -15,6 +17,16 @@ import java.util.stream.Collectors;
  * <p>
  * your_order("is2 Thi1s T4est 3a")
  * [1] "Thi1s is2 3a T4est"
+ * <p>
+ * **Code blocks:**
+ * <p>
+ * ```java
+ * public static String orderBest(String words) {
+ * return Arrays.stream(words.split(" "))
+ * .sorted(Comparator.comparing(s -> Integer.valueOf(s.replaceAll("\\D", ""))))
+ * .collect(Collectors.joining(" "));
+ * }
+ * ```
  */
 public class Order {
 
@@ -42,6 +54,6 @@ public class Order {
     public static String orderBest(String words) {
         return Arrays.stream(words.split(" "))
                 .sorted(Comparator.comparing(s -> Integer.valueOf(s.replaceAll("\\D", ""))))
-                .reduce((a, b) -> a + " " + b).get();
+                .collect(Collectors.joining(" "));
     }
 }
