@@ -1,3 +1,5 @@
+package y2018.m03;
+
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
