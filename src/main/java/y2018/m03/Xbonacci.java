@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
- * ### 2018/03/18 Kata
+ * ### 2018/03/18 DoGiveMeFive
  * ##　Description:
  * <p>
  * Well met with Fibonacci bigger brother, AKA Tribonacci.

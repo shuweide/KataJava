@@ -25,7 +25,7 @@ import java.util.stream.Stream;
  * I have also created other katas. Take a look if you enjoyed this kata!
  *
  */
-public class Kata {
+public class DoGiveMeFive {
 
     /**
      * ```java
