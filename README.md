@@ -1,7 +1,4 @@
 # KataJava
 
 Java kata from [CodeWars](https://www.codewars.com/)
-
-<a href="https://www.codewars.com/users/shuweide" target="_blank">
-  ![Code Warrior](https://www.codewars.com/users/shuweide/badges/large)
-</a>
+[![Code Warrior](https://www.codewars.com/users/shuweide/badges/large)](https://www.codewars.com/users/shuweide)
