@@ -18,7 +18,7 @@ public class BreakingChocolate {
         else
             return (m * n) - 1;
     }
-    
+
     public static int breakChocolateBest(int n, int m) {
         return Math.max(n * m - 1, 0);
     }
