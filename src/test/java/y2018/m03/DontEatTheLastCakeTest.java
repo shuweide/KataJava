@@ -31,7 +31,6 @@ public class DontEatTheLastCakeTest {
         // First, ask the player if they wish to move first.
         boolean first = player.firstMove(cakes);
         int last = 0;
-        int x = 2;
         if (debug) {
             System.out.println(plural(cakes) + " on the table.  You decided to move " + (first ? "first" : "last"));
         }
@@ -39,7 +38,6 @@ public class DontEatTheLastCakeTest {
         while (true) {
             // My move
             if (!first) {
-                x = 3 - x;
                 ArrayList<Integer> allow = new ArrayList<Integer>();
                 for (int i = 1; i < 4; i++) {
                     if (cakes >= i && i != last) {
