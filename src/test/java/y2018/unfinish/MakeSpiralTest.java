@@ -35,6 +35,18 @@ public class MakeSpiralTest {
     }
 
     @Test
+    public void test4() {
+        assertTrue(deepEquals(
+                MakeSpiral.spiralize(4),
+                new int[][]{
+                        {1, 1, 1, 1},
+                        {0, 0, 0, 1},
+                        {1, 0, 0, 1},
+                        {1, 1, 1, 1}
+                }));
+    }
+
+    @Test
     public void test5() {
         assertTrue(deepEquals(
                 MakeSpiral.spiralize(5),
