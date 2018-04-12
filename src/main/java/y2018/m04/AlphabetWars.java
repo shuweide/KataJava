@@ -125,10 +125,30 @@ public class AlphabetWars {
         return new String(currentBattleField).matches("_{" + currentBattleField.length + "}");
     }
 
+    /**
+     * ```java
+     * int[] rIdx = new int[reinforces[0].length() + 2];
+     * for (String a : airstrikes) {
+     *     Set<Integer> massacre = new HashSet<>();
+     *     int i = 0;
+     *     for (char c : a.toCharArray()) {
+     *         i++;
+     *         if (c == '*') massacre.addAll(Arrays.asList(i - 1, i, i + 1));
+     *     }
+     *     for (int idx : massacre) rIdx[idx] += 1;
+     * }
+     * return IntStream.range(1, rIdx.length - 1)
+     *         .mapToObj(c -> rIdx[c] >= reinforces.length ? "_" : reinforces[rIdx[c]].substring(c - 1, c))
+     *         .collect(Collectors.joining());
+     * ```
+     * @param reinforces
+     * @param airstrikes
+     * @return
+     */
     public static String reinforcesMassacreBest(String[] reinforces, String[] airstrikes) {
         int[] rIdx = new int[reinforces[0].length() + 2];
         for (String a : airstrikes) {
-            Set<Integer> massacre = new HashSet<Integer>();
+            Set<Integer> massacre = new HashSet<>();
             int i = 0;
             for (char c : a.toCharArray()) {
                 i++;
