@@ -19,4 +19,19 @@ public class AlphabetWarPriestTest {
         assertEquals("Let's fight again!", AlphabetWarPriest.woLoLoooooo("zdqmwpbs"));
         assertEquals("Left side wins!", AlphabetWarPriest.woLoLoooooo("ztztztzs"));
     }
+
+    @Test
+    public void SampleTestsBest() {
+        assertEquals("Right side wins!", AlphabetWarPriest.woLoLooooooBest("z"));
+        assertEquals("Left side wins!", AlphabetWarPriest.woLoLooooooBest("tz"));
+        assertEquals("Let's fight again!", AlphabetWarPriest.woLoLooooooBest("jbdt"));
+        assertEquals("Right side wins!", AlphabetWarPriest.woLoLooooooBest("jz"));
+        assertEquals("Left side wins!", AlphabetWarPriest.woLoLooooooBest("zt"));
+        assertEquals("Right side wins!", AlphabetWarPriest.woLoLooooooBest("sj"));
+        assertEquals("Left side wins!", AlphabetWarPriest.woLoLooooooBest("azt"));
+        assertEquals("Right side wins!", AlphabetWarPriest.woLoLooooooBest("tzj"));
+        assertEquals("Left side wins!", AlphabetWarPriest.woLoLooooooBest("wololooooo"));
+        assertEquals("Let's fight again!", AlphabetWarPriest.woLoLooooooBest("zdqmwpbs"));
+        assertEquals("Left side wins!", AlphabetWarPriest.woLoLooooooBest("ztztztzs"));
+    }
 }

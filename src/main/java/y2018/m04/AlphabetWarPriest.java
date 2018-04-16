@@ -61,12 +61,9 @@ import java.util.*;
  */
 public class AlphabetWarPriest {
 
-    private static final String LEFT_WIN = "Left side wins!";
-    private static final String RIGHT_WIN = "Right side wins!";
-    private static final String TIE = "Let's fight again!";
+    private static final String LEFT_WIN = "Left side wins!", RIGHT_WIN = "Right side wins!", TIE = "Let's fight again!";
     private static Map<Character, Integer> scores;
-    private static List<Character> leftTeam;
-    private static List<Character> rightTeam;
+    private static List<Character> leftTeam, rightTeam;
 
     static {
         leftTeam = new LinkedList<>(Arrays.asList('t', 's', 'b', 'p', 'w'));
@@ -149,5 +146,72 @@ public class AlphabetWarPriest {
         if (nextLetter != enemyPriest && enemyTeam.contains(nextLetter)) {
             letters[letterIndex + 1] = selfTeam.get(enemyTeam.indexOf(nextLetter));
         }
+    }
+
+    /**
+     * ```java
+     *         Map<Character, Integer> m = new HashMap<>();
+     *         m.put('w', -4);
+     *         m.put('p', -3);
+     *         m.put('b', -2);
+     *         m.put('s', -1);
+     *         m.put('m', 4);
+     *         m.put('q', 3);
+     *         m.put('d', 2);
+     *         m.put('z', 1);
+     *
+     *         int score = 0;
+     *
+     *         for (int i = 0; i < battlefield.length(); i++) {
+     *             int p = m.getOrDefault(battlefield.charAt(i), 0);
+     *             if ((p > 0 && isConverted(i, battlefield, 't', 'j')) || (p < 0 && isConverted(i, battlefield, 'j', 't'))) {
+     *                 p = 0 - p;
+     *             }
+     *             score += p;
+     *         }
+     *         if (score > 0) {
+     *             return "Right side wins!";
+     *         } else if (score < 0) {
+     *             return "Left side wins!";
+     *         }
+     *         return "Let's fight again!";
+     * ```
+     * @param battlefield
+     * @return
+     */
+    public static String woLoLooooooBest(String battlefield) {
+        Map<Character, Integer> m = new HashMap<>();
+        m.put('w', -4);
+        m.put('p', -3);
+        m.put('b', -2);
+        m.put('s', -1);
+        m.put('m', 4);
+        m.put('q', 3);
+        m.put('d', 2);
+        m.put('z', 1);
+
+        int score = 0;
+
+        for (int i = 0; i < battlefield.length(); i++) {
+            int p = m.getOrDefault(battlefield.charAt(i), 0);
+            if ((p > 0 && isConverted(i, battlefield, 't', 'j')) || (p < 0 && isConverted(i, battlefield, 'j', 't'))) {
+                p = 0 - p;
+            }
+            score += p;
+        }
+        if (score > 0) {
+            return "Right side wins!";
+        } else if (score < 0) {
+            return "Left side wins!";
+        }
+        return "Let's fight again!";
+    }
+
+    private static boolean isConverted(int i, String battlefield, char enemyC, char ourC) {
+        boolean prevConverts = (i > 0 && battlefield.charAt(i - 1) == enemyC)
+                && (i == battlefield.length() - 1 || battlefield.charAt(i + 1) != ourC);
+        boolean nextConverts = (i < battlefield.length() - 1 && battlefield.charAt(i + 1) == enemyC)
+                && (i == 0 || battlefield.charAt(i - 1) != ourC);
+        return prevConverts || nextConverts;
     }
 }
