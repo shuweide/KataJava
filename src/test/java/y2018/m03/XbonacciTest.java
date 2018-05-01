@@ -10,12 +10,12 @@ public class XbonacciTest {
     private Xbonacci variabonacci;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         variabonacci = new Xbonacci();
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         variabonacci = null;
     }
 

@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class ExpandedFormTest {
     @Test
-    public void expandedForm() throws Exception {
+    public void expandedForm() {
         assertEquals("10 + 2", ExpandedForm.expandedForm(12));
         assertEquals("40 + 2", ExpandedForm.expandedForm(42));
         assertEquals("70000 + 300 + 4", ExpandedForm.expandedForm(70304));

@@ -116,8 +116,8 @@ class TreeNode {
             return false;
         }
         return this.value == root2.value &&
-                this.left != null ? this.left.equals(root2.left) : true &&
-                this.right != null ? this.right.equals(root2.right) : true;
+                this.left != null ? this.left.equals(root2.left) : false ||
+                this.right == null || this.right.equals(root2.right);
     }
 }
 
