@@ -2,6 +2,19 @@ package y2018.m07;
 
 public class InsaneColouredTriangles {
 
+    public static char triangle2(final String row) {
+        char[] a = row.toCharArray();
+        for (int s = 59049; s > 0; s /= 3) {
+            while (a.length > s) {
+                char[] b = new char[a.length - s];
+                for (int i = 0; i+s < a.length; i++)
+                    b[i] = (char) ((666 - a[i] - a[i+s]) % 3);
+                a = b;
+            }
+        }
+        return "BRG".charAt(a[0] % 3);
+    }
+
     private static char[] define = new char[]{'R', 'G', 'B'};
 
     public static char triangle(final String row) {
@@ -11,14 +24,18 @@ public class InsaneColouredTriangles {
             ints[i] = Character.getNumericValue(newRow.charAt(i));
         }
 
-        long result = 0L;
+        long result = 0;
         int n = ints.length;
         int n1 = n - 1;
         for (int k = 0; k < n; k++) {
-            long nCr = Math.round(chooseMod3(n1, k));
-            result = (result + nCr * ints[k]) % 3;
-            System.out.printf("%dC%d,nCr=%d,result=%d \n", n1, k, nCr, result);
+            if (ints[k] != 0) {
+                long nCr = combinations(n1, k, 3);
+                result = result + nCr * ints[k];
+//                System.out.printf("%dC%d,nCr=%d,result=%d \n", n1, k, nCr, result);
+            }
         }
+
+        result = result % 3;
 
         if (n1 % 2 != 0) {
             result = result * -1;
@@ -28,27 +45,61 @@ public class InsaneColouredTriangles {
             result += 3;
         }
 
-        System.out.println(result);
+//        System.out.println(result);
 
         return define[(int) result];
     }
 
-    public static double chooseMod3(int x, int y) {
-        if (y < 0 || y > x) return 0;
-        if (y > x / 2) {
-            // choose(n,k) == choose(n,n-k),
-            // so this could save a little effort
-            y = x - y;
+    private static long combinations(int n, int k, long p) {
+        int num_degree = get_degree(n, p) - get_degree(n - k, p);
+        int den_degree = get_degree(k, p);
+
+        if (num_degree > den_degree) {
+            return 0;
         }
-
-        double answer = 1.0d;
-
-        for (int i = 1; i <= y; i++) {
-            answer = (answer * (x + 1 - i) / i) % 3;
-//            answer *= (x + 1 - i);
-//            answer /= i;
+        long res = 1;
+        for (long i = n; i > n - k; --i) {
+            long ti = i;
+            while(ti % p == 0) {
+                ti /= p;
+            }
+            res = (res * ti) % p;
         }
+        long denom = 1;
+        for (long  i = 1; i <= k; ++i) {
+            long ti = i;
+            while(ti % p == 0) {
+                ti /= p;
+            }
+            denom = (denom * ti) % p;
+        }
+        res = (res * degree(denom, p-2, p)) % p;
+        return res;
+    }
 
-        return answer;
+    private static long degree(long a, long k, long p) {
+        long res = 1;
+        long cur = a;
+
+        while (k > 0) {
+            if (k % 2 > 0) {
+                res = (res * cur) % p;
+            }
+            k /= 2;
+            cur = (cur * cur) % p;
+        }
+        return res;
+    }
+
+    static int get_degree(long n, long p) { // returns the degree with which p is in n!
+        int degree_num = 0;
+        long u = p;
+        long temp = n;
+
+        while (u <= temp) {
+            degree_num += temp / u;
+            u *= p;
+        }
+        return degree_num;
     }
 }
