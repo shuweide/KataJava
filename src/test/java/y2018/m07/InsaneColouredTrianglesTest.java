@@ -71,4 +71,25 @@ public class InsaneColouredTrianglesTest {
 
         System.out.println((end - start)/1_000_000);
     }
+
+    @Test
+    public void largeExamples3() {
+        String largeStr = "RGBRGRBGRB";
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(int i=0; i<10000;i++){
+            stringBuilder.append(largeStr);
+        }
+
+        System.out.println(stringBuilder.length());
+
+        long start = System.nanoTime();
+
+        InsaneColouredTriangles.triangle3(stringBuilder.toString());
+
+        long end = System.nanoTime();
+
+        System.out.println((end - start)/1_000_000);
+    }
 }

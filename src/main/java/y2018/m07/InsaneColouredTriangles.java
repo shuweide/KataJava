@@ -102,4 +102,34 @@ public class InsaneColouredTriangles {
         }
         return degree_num;
     }
+    
+    static int getNextMagicTriangleWidth(int w) {
+        int p = 1;
+        while (p * 3 + 1 <= w) p *= 3;
+        return p + 1;
+    }
+
+    static byte charToByte(byte c) {
+        return c == 'R' ? (byte) 1 : c == 'G' ? (byte) 2 : (byte) 4;
+    }
+
+    static char byteToChar(byte b) {
+        return b == 1 ? 'R' : b == 2 ? 'G' : 'B';
+    }
+
+    public static char triangle3(final String s) {
+        int w = s.length();
+        byte[] a = s.getBytes();
+        for (int i = 0; i < w; i++) a[i] = charToByte(a[i]);
+        do {
+            int mw = getNextMagicTriangleWidth(w);
+            w -= mw - 1;
+            for (int i = 0; i < w; i++) {
+                int t = a[i] ^ a[mw + i - 1];
+                if (t != 0) a[i] = (byte) (t ^ 7);
+            }
+        } while (w > 1);
+        return byteToChar(a[0]);
+    }
+
 }
